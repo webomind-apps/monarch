@@ -1,0 +1,6 @@
+*
+!.gitignore
+
+### Laravel ###
+vendor/
+node_modules/

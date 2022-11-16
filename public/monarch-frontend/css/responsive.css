@@ -1,0 +1,30 @@
+
+
+@media only screen and (max-width: 600px) {
+    .about-area{
+        padding : 20px 0;
+    }
+   .contact-banner .overlay-content h2{
+    font-size: 22px;
+   }
+   .find-location h2{
+        font-size: 30px;
+    }
+    .section-title h2{
+        font-size: 30px;
+    }
+   
+
+}
+@media only screen and (max-width: 600px) {
+    .section-title h2 {
+      font-size: 30px;
+      width: 100%;
+      margin-top: 20px;
+    }
+    .section-title .btn {
+      position: absolute;
+      right: 0;
+      top: -30%!important;
+    }
+  }
