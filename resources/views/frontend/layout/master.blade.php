@@ -2,15 +2,13 @@
 <html lang="en">
 
 <head>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Monarch @yield('title')</title>
-
-    <meta name="title" , content='@yield('meta_title')'>
-    <meta name="description" , content='@yield('meta_description')'>
-    <meta name="keywords" , content='@yield('meta_keywords')'>
-
+    @yield('title')
+    @yield('meta_description')
+    @yield('meta_keywords')
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.2/css/bootstrap.min.css"
         referrerpolicy="no-referrer" />
@@ -42,11 +40,27 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+
     @stack('styles')
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NH9JPJP6SK"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-NH9JPJP6SK');
+    </script>
 
 </head>
 
 <body>
+
+
     @include('frontend.layout.top-nav')
 
     @yield('page-contents')
@@ -121,7 +135,10 @@
         $('.owl-home-plan').owlCarousel({
             loop: true,
             margin: 0,
-            nav: false,
+            nav: true,
+            navText: ["<div class='nav-btn prev-slide'><i class='fa fa-arrow-left'></i></div>",
+                "<div class='nav-btn next-slide'><i class='fa fa-arrow-right'></i></div>"
+            ],
             responsive: {
                 0: {
                     items: 1
@@ -214,10 +231,10 @@
             nav: false,
             responsive: {
                 0: {
-                    items: 2
+                    items: 1
                 },
                 600: {
-                    items: 4
+                    items: 2
                 },
                 1000: {
                     items: 4
@@ -232,10 +249,10 @@
             nav: false,
             responsive: {
                 0: {
-                    items: 2
+                    items: 1
                 },
                 600: {
-                    items: 3
+                    items: 2
                 },
                 1000: {
                     items: 4
@@ -305,6 +322,7 @@
             return false;
         });
     </script>
+
     {{-- image pop up --}}
     <script>
         $(document).ready(function() {
@@ -576,6 +594,51 @@
             });
         })
     </script>
+    <script>
+        function validateCaptcha() {
+            document.getElementById('app-btn').style.opacity = "1";
+            var btn = document.getElementById('app-btn');
+            btn.disabled = false;
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var signaturePad = new SignaturePad(document.getElementById('signature-pad'), {
+                backgroundColor: 'rgba(255, 255, 255, 0)',
+                penColor: 'rgb(0, 0, 0)'
+            });
+            var saveButton = document.getElementById('save');
+            var cancelButton = document.getElementById('clear');
+
+            saveButton.addEventListener('click', function(event) {
+
+                if (signaturePad.isEmpty()) {
+                    alert("Please provide signature first.");
+                } else {
+                    var image = signaturePad.toDataURL('image/png');
+                    document.getElementById('signature').value = image;
+                    $('#staticBackdrop').modal('hide');
+                }
+            });
+            cancelButton.addEventListener('click', function(event) {
+                signaturePad.clear();
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#phone_number').on('change', function() {
+                var string = $('#phone_number').val();
+                var phone = string.replace(/(\d{3})(\d{3})(\d{4})/, '$1' + '-' + '$2' + '-' + '$3');
+                $('#phone_number').val(phone);
+            });
+        });
+    </script>
+
+    @stack('scripts')
+
 </body>
 
 </html>

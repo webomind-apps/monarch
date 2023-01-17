@@ -1,4 +1,4 @@
-<section class="cta-area ptb-100">
+<section class="cta-area ptb-100 mt-5">
     <div class="container">
         <div class="cta-content">
             <div class="icon">
@@ -167,9 +167,9 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 col-sm-6 col-md-6">
                     <p><i class="far fa-copyright"></i> 2022 Monarch Dentistry.
-                        {{-- All Rights Reserved by 
+                        Powered by  
                         <a
-                            href="https://www.webomindapps.com/" target="_blank">Webomindapps Pvt Ltd</a> --}}
+                            href="http://www.tastechnologies.com/" target="_blank">Tas Technologies</a>
                     </p>
                 </div>
 

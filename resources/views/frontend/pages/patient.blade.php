@@ -1,5 +1,18 @@
 @extends('frontend.layout.master')
 
+{{-- @section('title')
+    {{ $seo_contents->patients_title }}
+@endsection --}}
+@section('title')
+    <title>{{ $seo_contents->patients_meta_title }}</title>
+@endsection
+@section('meta_description')
+    <meta name="meta_description" content="{{ $seo_contents->patients_meta_description }}">
+@endsection
+@section('meta_keywords')
+    <meta name="meta_keywords" content="{{ $seo_contents->patients_meta_keywords }}">
+@endsection
+
 @section('page-contents')
     <style>
         /* h1.anim-about {

@@ -1,5 +1,18 @@
 @extends('frontend.layout.master')
 
+{{-- @section('title')
+    {{ $seo_contents->about_title }}
+@endsection --}}
+@section('title')
+    <title>{{ $seo_contents->about_meta_title }}</title>
+@endsection
+@section('meta_description')
+    <meta name="meta_description" content="{{ $seo_contents->about_meta_description }}">
+@endsection
+@section('meta_keywords')
+    <meta name="meta_keywords" content="{{ $seo_contents->about_meta_keywords }}">
+@endsection
+
 @section('page-contents')
     <style>
         /* h1.anim-about {
@@ -72,7 +85,7 @@
                         style="cursor: pointer; visibility: visible; animation-delay: 0.6s; animation-name: bounceIn;">
                         <div class="hizmet-kutu">
                             <div class="kutu-duzen">
-                                <h3><a href="#">Meet the Doctors</a></h3>
+                                <h3><a href="#">Meet the Dentists</a></h3>
                                 <div class="boslukicon"></div>
                                 <div class="icon-box">
                                     <span class="border-layer"></span>

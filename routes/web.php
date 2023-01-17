@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdvantageController;
+use App\Http\Controllers\Admin\BlogCategoryController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CareerController;
 use Illuminate\Support\Facades\Route;
@@ -51,10 +52,22 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    $numberOfClinics = Clinic::count();
+    if (Auth::user()->admin_type == 0) {
+        $clinic_id = Auth::user()->clinics()->get(['clinic_id']);
+        $numberOfClinics = Clinic::whereIn('id', $clinic_id->toArray())->count();
+        // dd($numberOfClinics);
+    } else {
+        $numberOfClinics = Clinic::count();
+    }
     $clinics = Clinic::select('name')->get();
     $numberOfLocations = Location::count();
-    $numberOfappointments = Enquiry::count();
+    if (Auth::user()->admin_type == 0) {
+        $clinic_id = Auth::user()->clinics()->get(['clinic_id']);
+        $numberOfappointments = Enquiry::whereIn('clinic_id', $clinic_id->toArray())->count();
+    } else {
+        $numberOfappointments = Enquiry::count();
+    }
+
     $numberOfcareersforms = Career::count();
     return view('admin.dashboard.index', compact('numberOfLocations', 'numberOfClinics', 'numberOfappointments', 'numberOfcareersforms', 'clinics'));
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -75,6 +88,7 @@ Route::get('/location/{slug}', [HomeController::class, 'detail_page'])->name('de
 Route::get('/careers', [HomeController::class, 'careers'])->name('careers');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::get('/footer', [HomeController::class, 'footer'])->name('footer');
+Route::get('/footer_services/{slug}', [HomeController::class, 'footer_services'])->name('footer_services');
 Route::get('/map_locations', [HomeController::class, 'map_locations'])->name('map_locations');
 //routes
 Route::get('book-appointment', [HomeController::class, 'book_appointment'])->name('book_appointment');
@@ -127,33 +141,35 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         return view('auth.login');
     })->name('login');
 
-    Route::group(['middleware' => ['auth','prevent-back-history']], function () {
-        
-        Route::resource('location', LocationController::class);
-        Route::get('/destroyGalleryImage/{id}', [ClinicsController::class, 'destroyGalleryImage'])->name('destroyGalleryImage');
-        Route::get('/destroyVideo/{id}', [ClinicsController::class, 'destroyVideo'])->name('destroyVideo');
+    Route::group(['middleware' => ['auth', 'prevent-back-history']], function () {
+        Route::group(['middleware' => ['auth', 'admin']], function () {
+            Route::resource('location', LocationController::class);
+            Route::get('/destroyGalleryImage/{id}', [ClinicsController::class, 'destroyGalleryImage'])->name('destroyGalleryImage');
+            Route::get('/destroyVideo/{id}', [ClinicsController::class, 'destroyVideo'])->name('destroyVideo');
+            Route::resource('services', ServicesController::class);
+            Route::resource('major-services', MajorServicesController::class);
+            Route::resource('plans', PlanController::class);
+            Route::resource('advantages', AdvantageController::class);
+            Route::resource('users', UserController::class);
+            Route::resource('careers', CareerController::class);
+            Route::resource('query', QueryController::class);
+            Route::resource('contact-us', AdminContactUsController::class);
+            Route::resource('who-we-are', WhoWeAreController::class);
+            Route::resource('photo-gallery', PhotoGalleryController::class);
+            Route::get('/destroyPhotoImage/{id}', [PhotoGalleryController::class, 'destroyPhotoImage'])->name('destroyPhotoImage');
+            Route::resource('smile-gallery', SmileGalleryController::class);
+            Route::get('/destroySmileImage/{id}', [SmileGalleryController::class, 'destroySmileImage'])->name('destroySmileImage');
+            Route::resource('financials', FinancialsController::class);
+            Route::resource('promotions', PromotionController::class);
+            Route::resource('doctors', DoctorController::class);
+            Route::resource('sliders', SliderController::class);
+            Route::resource('partners', PartnerController::class);
+            Route::resource('registration-forms', AdminRegistrationFormController::class);
+            Route::resource('blogs', BlogController::class);
+            Route::resource('blog-category', BlogCategoryController::class);
+        });
         Route::resource('clinics', ClinicsController::class);
-        Route::resource('services', ServicesController::class);
-        Route::resource('major-services', MajorServicesController::class);
-        Route::resource('plans', PlanController::class);
-        Route::resource('advantages', AdvantageController::class);
         Route::resource('enquiry', EnquiryController::class);
-        Route::resource('users', UserController::class);     
-        Route::resource('careers', CareerController::class);
-        Route::resource('query', QueryController::class);
-        Route::resource('contact-us', AdminContactUsController::class);
-        Route::resource('who-we-are', WhoWeAreController::class);
-        Route::resource('photo-gallery', PhotoGalleryController::class);
-        Route::get('/destroyPhotoImage/{id}', [PhotoGalleryController::class, 'destroyPhotoImage'])->name('destroyPhotoImage');
-        Route::resource('smile-gallery', SmileGalleryController::class);
-        Route::get('/destroySmileImage/{id}', [SmileGalleryController::class, 'destroySmileImage'])->name('destroySmileImage');
-        Route::resource('financials', FinancialsController::class);
-        Route::resource('promotions', PromotionController::class);
-        Route::resource('doctors', DoctorController::class);
-        Route::resource('sliders', SliderController::class);
-        Route::resource('partners', PartnerController::class);
-        Route::resource('registration-forms', AdminRegistrationFormController::class);
-        Route::resource('blogs', BlogController::class);
-
     });
+    Route::get('/clinics_admin', [UserController::class, 'clinics'])->name('clinics_admin');
 });

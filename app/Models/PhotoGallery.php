@@ -11,6 +11,9 @@ class PhotoGallery extends Model
     protected $fillable = [
         'banner',
         'title',
+        'meta_title',
+        'meta_description',
+        'meta_keywords'
     ]; 
 
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Advantage;
 use App\Models\AdvantageTopList;
 use App\Models\Clinic;
+use App\Models\ClinicAdmin;
 use App\Models\ClinicAdvantage;
 use App\Models\ClinicGallery;
 use App\Models\ClinicPlan;
@@ -14,7 +15,9 @@ use App\Models\ClinicVideo;
 use App\Models\Location;
 use App\Models\Plan;
 use App\Models\Services;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ClinicsController extends Controller
 {
@@ -25,7 +28,15 @@ class ClinicsController extends Controller
      */
     public function index()
     {
-        $clinics = Clinic::orderBy('priority', 'asc')->paginate(10);
+        // dd(Auth::user()->id);
+        if (Auth::user()->admin_type == 1) {
+            $clinics = Clinic::orderBy('priority')->paginate(10);
+        } elseif (Auth::user()->admin_type == 0) {
+            $clinic_id = Auth::user()->clinics()->get(['clinic_id']);
+           
+            $clinics = Clinic::whereIn('id', $clinic_id->toArray())->orderBy('priority')->paginate(10);
+            // dd($clinics);
+        }
         return view('admin.clinics.index', compact('clinics'));
     }
 
@@ -51,7 +62,7 @@ class ClinicsController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
+        dd($request->file('banner'));
 
         $this->validate($request, [
             'location_id' => 'required',
@@ -62,7 +73,7 @@ class ClinicsController extends Controller
             'lng' => 'required',
             'priority' => 'required',
             'phone_number' => 'required',
-            'email' => 'required',
+            'email' => 'required|unique:clinics',
             'address' => 'required',
             'office_hours' => 'required',
             // 'maplink' => 'required',

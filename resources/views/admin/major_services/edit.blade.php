@@ -6,6 +6,7 @@
                         class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> --}}
     </div>
     <div>
+        {{-- {{dd($services, $service)}} --}}
         <div class="row">
             <div class="col-lg-10 mx-auto">
                 <form method="POST" action="{{ route('admin.major-services.update', $service->id) }}"
@@ -15,8 +16,8 @@
                     <div class="form-group">
                         <div class="form-group">
                             <label for="Title">Title<span style="color: red">*</span></label>
-                            <input type="text" class="form-control slug" id="title" name="title" placeholder="Title"
-                                value="{{ $service->title }}">
+                            <input type="text" class="form-control slug" id="title" name="title"
+                                placeholder="Title" value="{{ $service->title }}">
                         </div>
                         <div class="form-group">
                             <label for="Slug">Slug<span style="color: red">*</span></label>
@@ -44,6 +45,30 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label for="Meta Description">Meta Title<span style="color: red">*</span></label>
+                            <textarea class="form-control" rows="8" id="meta_title" name="meta_title" placeholder="Meta Title">{{ $service->meta_title }}</textarea>
+                            @error('meta_title')
+                                <span class="error">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="Meta Description">Meta Description<span style="color: red">*</span></label>
+                            <textarea class="form-control" rows="8" id="meta_description" name="meta_description"
+                                placeholder="Meta Description">{{ $service->meta_description }}</textarea>
+                            @error('meta_description')
+                                <span class="error">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label for="Meta Keywords">Meta Keywords<span style="color: red">*</span></label>
+                                <textarea class="form-control" rows="8" id="meta_keywords" name="meta_keywords" placeholder="Meta Keywords">{{ $service->meta_keywords }}</textarea>
+                                @error('meta_keywords')
+                                    <span class="error">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label for="Minor Services">Minor Services<span style="color: red">*</span></label></br>
                             @php
                                 $existing_services = $service
@@ -57,6 +82,7 @@
                                 <label for="{{ $service->name }}">{{ $service->name }}</label><br>
                             @endforeach
                         </div>
+
                     </div>
                     <button type="submit" class="btn btn-danger btn-sm">Submit</button>
                 </form>

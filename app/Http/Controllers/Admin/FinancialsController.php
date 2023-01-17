@@ -41,7 +41,10 @@ class FinancialsController extends Controller
             'banner' => 'required',
             'image' => 'required',
             'title' => 'required',
-            'description' => 'required', 
+            'description' => 'required',
+            'meta_title' => 'required',
+            'meta_keywords' => 'required',
+            'meta_description' => 'required',
         ]);
 
         $banner = $request->file('banner')->store('financials/banners', 'public');
@@ -51,6 +54,9 @@ class FinancialsController extends Controller
         $financials->banner = $banner;
         $financials->image = $image;
         $financials->description = $request->description;
+        $financials->meta_title = $request->meta_title;
+        $financials->meta_description = $request->meta_description;
+        $financials->meta_keywords = $request->meta_keywords;
         $financials->save();
 
         return redirect()->route('admin.financials.index')->with('message', 'Financials details added successfully!');
@@ -88,6 +94,17 @@ class FinancialsController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $this->validate($request, [
+            // 'banner' => 'required',
+            // 'image' => 'required',
+            'title' => 'required',
+            'description' => 'required',
+            'meta_title' => 'required',
+            'meta_keywords' => 'required',
+            'meta_description' => 'required',
+        ]);
+
         $financials = Financial::find($id);
         $financials->title = $request->title;
         if ($request->hasFile('banner')) {
@@ -99,6 +116,9 @@ class FinancialsController extends Controller
             $financials->image = $image;
         }
         $financials->description = $request->description;
+        $financials->meta_title = $request->meta_title;
+        $financials->meta_description = $request->meta_description;
+        $financials->meta_keywords = $request->meta_keywords;
         $financials->save();
 
         return redirect()->route('admin.financials.index')->with('message', 'Financials details updated successfully!');

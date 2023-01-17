@@ -1,15 +1,28 @@
 @extends('frontend.layout.master')
 
+{{-- @section('title')
+  {{ $promotions->title }}
+@endsection --}}
+@section('title')
+    <title>{{ $promotions->meta_title }}</title>
+@endsection
+@section('meta_description')
+    <meta name="meta_description" content="{{ $promotions->meta_description }}">
+@endsection
+@section('meta_keywords')
+    <meta name="meta_keywords" content="{{ $promotions->meta_keywords }}">
+@endsection
+
 @section('page-contents')
     <style>
         /* h1.anim-about {
-                        font-size: 60px !important;
-                        color: #043d72;
-                        font-weight: 500 !important;
-                        animation: 1s 1.5s fadeInDown both;
-                        line-height: 67px;
-                        font-family: 'Oswald', sans-serif;
-                    } */
+                            font-size: 60px !important;
+                            color: #043d72;
+                            font-weight: 500 !important;
+                            animation: 1s 1.5s fadeInDown both;
+                            line-height: 67px;
+                            font-family: 'Oswald', sans-serif;
+                        } */
 
         .square-shape {
             /* padding: 40px 0px 40px 0px; */
@@ -68,7 +81,7 @@
                     @php
                         $plan = \App\Models\Plan::find($promotion->plans_id);
                     @endphp
-                    <div class="col-lg-3 col-md-12  {{ $key%2 == 1 ? 'mt-5' : '' }}">
+                    <div class="col-lg-3 col-md-12">
                         <div class="paketler wow bounceIn thumb-pad1" data-wow-delay="0.5s"
                             onclick="location.href='{{ route('book_appointment') }}';"
                             style="cursor: pointer; visibility: visible; animation-delay: 0.5s; animation-name: bounceIn;">
@@ -91,6 +104,7 @@
                 @endforeach
             </div>
         </div>
+
     </section>
     <!-- End FunFacts Area -->
 @endsection

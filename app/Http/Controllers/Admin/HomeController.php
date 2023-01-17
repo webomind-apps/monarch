@@ -17,7 +17,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('admin.home.index');
+        return view('admin.home_seo.index');
     }
 
     /**
@@ -27,10 +27,7 @@ class HomeController extends Controller
      */
     public function create()
     {
-        $advantages = Advantage::all();
-        $services = Services::all();
-        $plans = Plan::all();
-        return view('admin.home.create', compact('advantages', 'services', 'plans'));
+        
     }
 
     /**

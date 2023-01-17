@@ -57,6 +57,32 @@
                         </div>
                     </div>
                 @endif
+                <label for="SEO">SEO content<span style="color: red">*</span></label>
+                <div class="form-group">
+                    <label for="Meta title">Meta title<span style="color: red">*</span></label>
+                    <input type="text" class="form-control" id="meta_title" name="meta_title"
+                        value="{{ $details ? $details->meta_title : '' }}" placeholder="Meta title">
+                    @error('meta_title')
+                        <span class="error">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="Meta Description">Meta Description<span style="color: red">*</span></label>
+                    <textarea class="form-control" rows="8" id="meta_description" name="meta_description"
+                        placeholder="Meta Description">{{ $details ? $details->meta_description : '' }}</textarea>
+                    @error('meta_description')
+                        <span class="error">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <div class="form-group">
+                        <label for="Meta Keywords">Meta Keywords<span style="color: red">*</span></label>
+                        <textarea class="form-control" rows="8" id="meta_keywords" name="meta_keywords" placeholder="Meta Keywords">{{ $details ? $details->meta_keywords : '' }}</textarea>
+                        @error('meta_keywords')
+                            <span class="error">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
                 <button type="submit" class="btn btn-danger btn-sm">Submit</button>
             </form>
         </div>

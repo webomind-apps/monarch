@@ -3,13 +3,13 @@
 @section('page-contents')
     <style>
         /* h1.anim-about strong {
-                                    font-size: 57px;
-                                    color: #043d72;
-                                    font-weight: 600;
-                                    animation: 1s 1.5s fadeInDown both;
-                                    line-height: 67px;
-                                    font-family: 'Oswald', sans-serif;
-                                } */
+                                                            font-size: 57px;
+                                                            color: #043d72;
+                                                            font-weight: 600;
+                                                            animation: 1s 1.5s fadeInDown both;
+                                                            line-height: 67px;
+                                                            font-family: 'Oswald', sans-serif;
+                                                        } */
 
         .square-shape {
             /* padding: 40px 0px 40px 0px; */
@@ -85,7 +85,7 @@
                                         <div class="form-group">
                                             <label><i class="far fa-phone-volume"></i><span
                                                     style="color: red">*</span></label>
-                                            <input type="text" name="phone_number" id="phone_number" required
+                                            <input type="tel" name="phone_number" id="phone_number" required
                                                 class="form-control" placeholder="YOUR PHONE">
 
                                         </div>
@@ -97,7 +97,6 @@
                                                     style="color: red">*</span></label>
                                             <input type="email" name="email" id="email" class="form-control"
                                                 required placeholder="YOUR EMAIL">
-
                                         </div>
                                     </div>
 
@@ -121,8 +120,6 @@
                                         </div>
                                     </div>
 
-
-
                                     <div class="col-lg-6 col-md-6">
                                         <div class="form-group">
                                             <label><i class="far fa-street-view"></i><span
@@ -140,7 +137,8 @@
 
                                     <div class="col-lg-12 col-md-12">
                                         <div class="form-group">
-                                            <label><i class="far fa-comments"></i><span style="color: red">*</span></label>
+                                            <label><i class="far fa-comments"></i><span
+                                                    style="color: red">*</span></label>
                                             <textarea name="message" class="form-control" id="message" cols="30" rows="6"
                                                 placeholder="YOUR MESSAGE" required></textarea>
 
@@ -148,7 +146,8 @@
                                     </div>
                                     <div class="col-md-12 form-group">
                                         <div class="g-recaptcha" data-callback="validateCaptcha"
-                                            data-sitekey="6LcIO8oiAAAAADaqoFOkE6XNb0niDUduHkebp6sK"></div>
+                                            data-sitekey="6LcIO8oiAAAAADaqoFOkE6XNb0niDUduHkebp6sK" disabled
+                                            id="app-btn"></div>
                                     </div>
 
                                     <div class="col-lg-12 col-md-12">
@@ -159,7 +158,6 @@
                                     </div>
                                 </div>
                             </form>
-
                         </div>
                     </div>
 
@@ -173,6 +171,6 @@
 
         <div class="bg-map"><img src={{ asset('monarch-frontend/image/book-an-appointment/bg-map.png') }}></div>
     </section>
-    <!-- End Contact Area -->  
+    <!-- End Contact Area -->
 @endsection
 

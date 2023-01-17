@@ -1,17 +1,18 @@
 @extends('frontend.layout.master')
 
-@section('title')
+{{-- @section('title')
     {{ $location_details->name }}
-@endsection
-@section('meta_title')
-    {{ $location_details->meta_title }}
+@endsection --}}
+@section('title')
+    <title>{{ $location_details->meta_title }}</title>
 @endsection
 @section('meta_description')
-    {{ $location_details->meta_description }}
+    <meta name="meta_description" content="{{ $location_details->meta_description }}">
 @endsection
 @section('meta_keywords')
-    {{ $location_details->meta_keywords }}
+    <meta name="meta_keywords" content="{{ $location_details->meta_keywords }}">
 @endsection
+
 
 @push('styles')
     <style>
@@ -521,10 +522,22 @@
                     </div>
                 </div>
             </div>
-            <div id="map1">
-                <iframe src="{{ $location_details->map_link }}" width="100%" height="100%" style="border:0;"
-                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
+            @if ($location_details->map_link)
+                <div id="map1">
+                    <iframe src="{{ $location_details->map_link }}" width="100%" height="100%" style="border:0;"
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            @else
+                <section class="home-banner home-slider-two">
+                    <div id="Bannerslider" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img class="img-fluid" src={{ asset("storage/$location_details->banner") }} alt="...">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            @endif
         </div>
     </section>
 
@@ -673,8 +686,6 @@
                                         </div>
                                     </div>
 
-
-
                                     <div class="col-lg-6 col-md-6">
                                         <div class="form-group">
                                             <label><i class="far fa-street-view"></i><span
@@ -715,8 +726,8 @@
                                     </div> --}}
 
                                     <div class="col-lg-12 col-md-12">
-                                        <button type="submit" class="btn btn-primary">Send Message <i
-                                                class="fa fa-paper-plane"></i></button>
+                                        <button type="submit" class="btn btn-primary" id="app-btn">Send
+                                            Message <i class="fa fa-paper-plane"></i></button>
                                         <div id="msgSubmit" class="h3 text-center hidden"></div>
                                         <div class="clearfix"></div>
                                     </div>
@@ -726,12 +737,14 @@
                         </div>
                     </div>
 
-                    <div class="col-md-5 px-5 review-section">
-                        <div class="review-box">
-                            {{-- <div class="elfsight-app-2c83bda2-858d-4d6c-9945-0faa79562835"></div> --}}
-                            {!! $location_details->google_review_link !!}
+                    @if ($location_details->google_review_link)
+                        <div class="col-md-5 px-5 review-section">
+                            <div class="review-box">
+                                {{-- <div class="elfsight-app-2c83bda2-858d-4d6c-9945-0faa79562835"></div> --}}
+                                {!! $location_details->google_review_link !!}
+                            </div>
                         </div>
-                    </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -831,7 +844,7 @@
                     <div class="row">
                         <div class="col-md-12 mb-1 text-center">
                             <div class="section-title text-center">
-                                <h2>Promotion Plans</h2>
+                                <h2 class="text-white">Promotion Plans</h2>
                             </div>
                         </div>
                     </div>

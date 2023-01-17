@@ -2891,7 +2891,7 @@ Header Area CSS
         height: 240px;
     }
     #advantage-sec .featured-services-box {
-        height: auto !important;
+        height: 100% !important;
     }
 
     .locate {
@@ -3174,4 +3174,64 @@ Header Area CSS
     color: #fff;
     background-color: #043d72;
     border-color: #043d72;
+}
+
+.square-shape {
+    /* padding: 40px 0px 40px 0px; */
+    padding: 40px 40px 62px 40px;
+}
+
+#app-btn {
+    opacity: 0.5;
+}
+
+.partners-slides .owl-dots {
+    display: none;
+}
+.partners-slides .owl-nav .owl-prev .nav-btn i {
+    font-size: 25px;
+    margin: 0 10px;
+}
+.partners-slides .owl-nav .owl-next .nav-btn i {
+    font-size: 25px;
+    margin: 0 10px;
+}
+@media (max-width: 768px) {
+    .service-title-content {
+        padding: 10px;
+    }
+    .about-content {
+        padding: 10px;
+    }
+    .services-area {
+        padding: 0 10px;
+    }
+    .find-location .conatct-form {
+        padding: 30px 10px;
+    }
+    .currentLocationfooter .button {
+        padding: 10px 20px 10px 20px;
+    }
+}
+
+.modal-backdrop {
+    display: none !important;
+}
+
+.wrapper-signature {
+    position: relative;
+    width: 400px;
+    height: 200px;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.signature-pad {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 600px !important;
+    height: 200px;
 }

@@ -20,4 +20,5 @@ class Query extends Model
     public function clinic(){
         return $this->belongsTo(Clinic::class);
     }
+    
 }

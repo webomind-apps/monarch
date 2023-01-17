@@ -14,7 +14,7 @@
                 <div class="form-group">
                     <label for="Name">Name<span style="color: red">*</span></label>
                     <input type="text" class="form-control" id="name" name="name" placeholder="Name"
-                        value="{{ $doctor->name }}">
+                        value="{{ $doctor->name }}" required>
                     @error('name')
                         <span class="error">{{ $message }}</span>
                     @enderror
@@ -22,7 +22,7 @@
                 <div class="form-group">
                     <label for="Title">Title<span style="color: red">*</span></label>
                     <input type="text" class="form-control" id="title" name="title" placeholder="Title"
-                        value="{{ $doctor->designation }}">
+                        value="{{ $doctor->designation }}" required>
                     @error('title')
                         <span class="error">{{ $message }}</span>
                     @enderror
@@ -44,7 +44,7 @@
                 <div class="form-group">
                     <label for="Description">Description<span style="color: red">*</span></label>
                     <input type="text" class="form-control" id="description" name="description" placeholder="Description"
-                        value="{{ $doctor->description }}">
+                        value="{{ $doctor->description }}" required>
                     @error('description')
                         <span class="error">{{ $message }}</span>
                     @enderror

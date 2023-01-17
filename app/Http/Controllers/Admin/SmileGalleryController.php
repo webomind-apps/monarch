@@ -39,10 +39,26 @@ class SmileGalleryController extends Controller
      */
     public function store(Request $request)
     {
+
+        $this->validate(
+            $request,
+            [
+                'title' => 'required',
+                'banner' => 'required',
+                'images' => 'required',
+                'meta_title' => 'required',
+                'meta_keywords' => 'required',
+                'meta_description' => 'required',
+            ]
+        );
+
         $smilegalleryBanner = $request->file('banner')->store('photo-gallery/Banner', 'public');
 
         $smilegallery = new SmileGallery();
         $smilegallery->title = $request->title;
+        $smilegallery->meta_title = $request->meta_title;
+        $smilegallery->meta_description = $request->meta_description;
+        $smilegallery->meta_keywords = $request->meta_keywords;
         $smilegallery->banner = $smilegalleryBanner;
         $smilegallery->save();
 
@@ -88,8 +104,24 @@ class SmileGalleryController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $this->validate(
+            $request,
+            [
+                'title' => 'required',
+                // 'banner' => 'required',
+                // 'images' => 'required',
+                'meta_title' => 'required',
+                'meta_keywords' => 'required',
+                'meta_description' => 'required',
+            ]
+        );
+
         $smilegallery = SmileGallery::find($id);
         $smilegallery->title = $request->title;
+        $smilegallery->meta_title = $request->meta_title;
+        $smilegallery->meta_description = $request->meta_description;
+        $smilegallery->meta_keywords = $request->meta_keywords;
         if ($request->hasFile('banner')) {
             $banner_img = $request->file('banner')->store('photo-gallery/Banner', 'public');
             $smilegallery->banner = $banner_img;
@@ -120,7 +152,7 @@ class SmileGalleryController extends Controller
         //
     }
 
-    
+
     public function destroySmileImage($id)
     {
         $images = SmileGalleryImages::find($id);

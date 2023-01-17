@@ -37,7 +37,7 @@ class PlanController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
+        dd($request->file('icon'));
         $this->validate($request, ['name' => 'required', 'cost' => 'required', 'icon' => 'required']);
 
         $plan = new Plan;

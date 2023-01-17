@@ -145,6 +145,13 @@
                             <input type="checkbox" {{ $registration_form->seventy_plus == 1 ? 'checked' : '' }} onclick="return false;">
                         </div>
                     </div>
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label for="">Signature</label>
+                            <br>
+                            <img src="{{$registration_form->signature}}" height="200px" >
+                        </div>
+                    </div>
                     
                 </form>
                 <a href="{{ route('admin.registration-forms.index') }}">

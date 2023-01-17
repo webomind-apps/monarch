@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class RegistartionForm extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'signature',
+        
+    ];
+
+    public function clinic(){
+        return $this->belongsTo(Clinic::class);
+    }
 }

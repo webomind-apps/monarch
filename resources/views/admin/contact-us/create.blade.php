@@ -29,8 +29,7 @@
                         </div>
                         <div class="form-group">
                             <label for="Banner Header">Address<span style="color: red">*</span></label>
-                            <input type="text" class="form-control" id="address" name="address"
-                                placeholder="Address">
+                            <input type="text" class="form-control" id="address" name="address" placeholder="Address">
                             @error('address')
                                 <span class="error">{{ $message }}</span>
                             @enderror
@@ -45,8 +44,7 @@
                         </div>
                         <div class="form-group">
                             <label for="Email">Email<span style="color: red">*</span></label>
-                            <input type="text" class="form-control" id="email" name="email"
-                                placeholder="Email">
+                            <input type="text" class="form-control" id="email" name="email" placeholder="Email">
                             @error('email')
                                 <span class="error">{{ $message }}</span>
                             @enderror
@@ -67,6 +65,32 @@
                             @error('covid')
                                 <span class="error">{{ $message }}</span>
                             @enderror
+                        </div>
+                        <label for="SEO">SEO content<span style="color: red">*</span></label>
+                        <div class="form-group">
+                            <label for="Meta title">Meta title<span style="color: red">*</span></label>
+                            <input type="text" class="form-control" id="meta_title" name="meta_title"
+                                value="{{ old('meta_title') }}" placeholder="Meta title">
+                            @error('meta_title')
+                                <span class="error">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="Meta Description">Meta Description<span style="color: red">*</span></label>
+                            <textarea class="form-control" rows="8" id="meta_description" name="meta_description"
+                                placeholder="Meta Description">{{ old('meta_desription') }}</textarea>
+                            @error('meta_description')
+                                <span class="error">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label for="Meta Keywords">Meta Keywords<span style="color: red">*</span></label>
+                                <textarea class="form-control" rows="8" id="meta_keywords" name="meta_keywords" placeholder="Meta Keywords">{{ old('meta_keywords') }}</textarea>
+                                @error('meta_keywords')
+                                    <span class="error">{{ $message }}</span>
+                                @enderror
+                            </div>
                         </div>
                     </div>
 

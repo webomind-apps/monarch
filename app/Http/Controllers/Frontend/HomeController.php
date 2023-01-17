@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Advantage;
 use App\Models\Blog;
+use App\Models\BlogCatergory;
 use App\Models\Clinic;
 use App\Models\ContactUs;
 use App\Models\Doctor;
@@ -39,13 +40,30 @@ class HomeController extends Controller
     }
     public function blog()
     {
-        $blogs = Blog::orderBy('date', 'DESC')->paginate(12);
-        return view('frontend.pages.blog', compact('blogs'));
+        $blog_categories = BlogCatergory::all();
+
+        $blog_category = request()->blogs;
+        // dd($blog_category);
+        if (is_null($blog_category)) {
+            $blogs = Blog::orderBy('date', 'DESC')->paginate(12);
+        } else {
+            $blogs = Blog::where('blog_category_id', $blog_category)->orderBy('date', 'DESC')->paginate(12);
+        }
+
+        // $blogs = Blog::orderBy('date', 'DESC')->paginate(12);
+        return view('frontend.pages.blog', compact('blogs','blog_categories'));
     }
     public function footer()
     {
         $footer = Clinic::all();
         return response()->json($footer);
+    }
+
+    public function footer_services($slug)
+    {
+        $footerservices = MajorService::where('in_footer', 1)->where('slug', $slug)->get();
+        return view('frontend.layout.footer', compact('footerservices'));
+        // return response()->json($footerservices);
     }
 
     public function map_locations()
@@ -68,16 +86,19 @@ class HomeController extends Controller
     }
     public function about()
     {
-        return view('frontend.pages.about');
+        $seo_contents = ContactUs::first();
+        return view('frontend.pages.about', compact('seo_contents'));
     }
     public function patient()
     {
-        return view('frontend.pages.patient');
+        $seo_contents = ContactUs::first();
+        return view('frontend.pages.patient', compact('seo_contents'));
     }
     public function services()
     {
         $services = MajorService::all();
-        return view('frontend.pages.services', compact('services'));
+        $seo_contents = ContactUs::first();
+        return view('frontend.pages.services', compact('services','seo_contents'));
     }
     public function service_details($slug)
     {
@@ -92,7 +113,8 @@ class HomeController extends Controller
     public function find_location()
     {
         $locations = Clinic::all()->sortBy("priority");
-        return view('frontend.pages.find_location', compact('locations'));
+        $seo_contents = ContactUs::first();
+        return view('frontend.pages.find_location', compact('locations', 'seo_contents'));
 
         // $locations = Clinic::orderBy("priority")->where('status', '=', 1)->get();
         // return view('frontend.pages.find_location', compact('locations'));
@@ -116,14 +138,16 @@ class HomeController extends Controller
     public function careers()
     {
         $locations = Clinic::all();
-        return view('frontend.pages.careers', compact('locations'));
+        $seo_contents = ContactUs::first();
+        return view('frontend.pages.careers', compact('locations','seo_contents'));
     }
 
     public function contact()
     {
         $contacts = ContactUs::first();
         $locations = Clinic::all();
-        return view('frontend.pages.contact', compact('locations', 'contacts'));
+        $seo_contents = ContactUs::first();
+        return view('frontend.pages.contact', compact('locations', 'contacts','seo_contents'));
     }
     public function book_appointment()
     {
@@ -139,7 +163,8 @@ class HomeController extends Controller
     public function meet_the_doctors()
     {
         $doctors = Doctor::all();
-        return view('frontend.pages.meet_the_doctors', compact('doctors'));
+        $seo_contents = ContactUs::first();
+        return view('frontend.pages.meet_the_doctors', compact('doctors', 'seo_contents'));
     }
     public function photo_gallery()
     {

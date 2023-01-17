@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Clinic;
+use App\Models\ClinicAdmin;
 use App\Models\Enquiry;
 use App\Models\Location;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EnquiryController extends Controller
 {
@@ -17,14 +20,18 @@ class EnquiryController extends Controller
      */
     public function index()
     {
-
-        $location = request()->location;
-        $locations = Clinic::all();
-        if (is_null($location)) {
-            // $enquiries = Enquiry::all()->sortByDesc('created_at');
-            $enquiries = Enquiry::with('clinic')->orderBy('created_at', 'desc')->paginate(10);
-        } else {
-            $enquiries = Enquiry::where('clinic_id', $location)->orderBy('created_at', 'desc')->paginate(10);
+        if (Auth::user()->admin_type == 1) {
+            $location = request()->location;
+            $locations = Clinic::all();
+            if (is_null($location)) {
+                $enquiries = Enquiry::with('clinic')->orderBy('created_at', 'desc')->paginate(10);
+            } else {
+                $enquiries = Enquiry::where('clinic_id', $location)->orderBy('created_at', 'desc')->paginate(10);
+            }
+        } elseif (Auth::user()->admin_type == 0) {
+            $locations = Clinic::all();
+            $clinic_id = Auth::user()->clinics()->get(['clinic_id']);
+            $enquiries = Enquiry::whereIn('clinic_id', $clinic_id->toArray())->orderBy('created_at', 'desc')->paginate(10);
         }
         return view('admin.enquiry.index', compact('enquiries', 'locations'));
     }
@@ -70,7 +77,7 @@ class EnquiryController extends Controller
     public function show($id)
     {
         $enquiry = Enquiry::find($id);
-        return view('admin.enquiry.view', compact('enquiry'));
+        return view('admin.enquiry.show', compact('enquiry'));
     }
 
     /**

@@ -9,7 +9,7 @@
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
 
-        <form method="POST" action="{{ route('login') }}">
+        <form method="POST" action="{{ route('login') }}" >
             @csrf
 
             <!-- Email Address -->
@@ -23,13 +23,16 @@
             </div>
 
             <!-- Password -->
-            <div class="mt-4">
+            <div class="mt-4" id="password1">
                 <x-input-label for="password" :value="__('Password')" />
 
                 <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required
                     autocomplete="current-password" />
+                <i class="far fa-eye" id="togglePassword"></i>
 
-                <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                <x-input-error :messages="$errors->get('password')" class="mt-2"
+                    style="margin-left: -30px; 
+                    cursor: pointer" />
             </div>
 
             <!-- Remember Me -->
@@ -57,5 +60,3 @@
         </form>
     </x-auth-card>
 </x-guest-layout>
-
-

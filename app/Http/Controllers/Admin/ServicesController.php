@@ -41,9 +41,13 @@ class ServicesController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'icon' => 'required',
-            // 'banner' => 'required',
-            // 'url' => 'required',
-            // 'description' => 'required'
+            'banner' => 'required',
+            'image' => 'required',
+            'meta_title' => 'required',
+            'meta_description' => 'required',
+            'meta_keywords' => 'required',
+            'long_description' => 'required',
+            'description' => 'required'
         ]);
 
         $icon_path = $request->file('icon')->store('services/icon', 'public');
@@ -58,11 +62,16 @@ class ServicesController extends Controller
         $services->banner_path = $banner_path;
       
         $services->url = $request->url;
+        $services->meta_title = $request->meta_title;
+        $services->meta_description = $request->meta_title;
+        $services->meta_keywords = $request->meta_title;
+
         $services->description = $request->description;
         $services->long_description = $request->long_description;
         if ($request->in_homepage) {
             $services->in_homepage = $request->in_homepage;
         }
+       
         $services->save();
         return redirect()->route('admin.services.index')->with('message', 'Service added successfully');
     }
@@ -119,11 +128,15 @@ class ServicesController extends Controller
         $services->description = $request->description;
         $services->long_description = $request->long_description;
         $services->url = $request->url;
+        $services->meta_title = $request->meta_title;
+        $services->meta_description = $request->meta_description;
+        $services->meta_keywords = $request->meta_keywords;
         if ($request->in_homepage) {
             $services->in_homepage = $request->in_homepage;
         } else {
             $services->in_homepage = 0;
         }
+       
         $services->save();
 
         return redirect()->route('admin.services.index')->with('message', 'Service updated successfully');

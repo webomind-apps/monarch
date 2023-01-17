@@ -1,12 +1,52 @@
 @extends('frontend.layout.master')
 
-@section('page-contents')
+{{-- @section('title')
+    {{ $seo_contents->career_title }}
+@endsection --}}
+@section('title')
+    <title>{{ $seo_contents->career_meta_title }}</title>
+@endsection
+@section('meta_description')
+    <meta name="meta_description" content="{{ $seo_contents->career_meta_description }}">
+@endsection
+@section('meta_keywords')
+    <meta name="meta_keywords" content="{{ $seo_contents->career_meta_keywords }}">
+@endsection
 
+@section('page-contents')
+    <style>
+        .square-shape {
+
+            padding: 40px 40px 62px 40px;
+        }
+    </style>
     @if (session()->has('message'))
         <div class="alert alert-success" style="text-align: center">
             {{ session()->get('message') }}
         </div>
     @endif
+    {{-- <section class="home-banner home-slider-two">
+        <div id="Bannerslider" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="img-fluid" src={{ asset('monarch-frontend/image/career/career.jpg') }} alt="...">
+                    <div class="carousel-caption">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-xl-3 col-lg-3 col-md-7 col-sm-8 ms-auto">
+                                    <div class="square-shape">
+                                        <h1 class="anim-about "><strong>Career</strong>
+                                        </h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Left and right controls -->
+        </div>
+    </section> --}}
     <section class="home-banner home-slider-two">
         <div id="Bannerslider" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
@@ -82,8 +122,8 @@
                                 <div class="col-md-6">
                                     <div class="input-group">
                                         <div class="icon"><i class="far fa-phone-alt"></i></div>
-                                        <input type="text" name="phone_number" id="phone_number" placeholder="YOUR PHONE"
-                                            required>
+                                        <input type="text" name="phone_number" id="phone_number" 
+                                            required placeholder="PHONE NUMBER">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -92,7 +132,8 @@
                                         <select name="clinic_id" required>
                                             <option value="" selected="selected">CHOOSE LOCATION</option>
                                             @foreach ($locations as $location)
-                                                <option value="{{ $location->id }}" id="{{ $location->id }}" name="clinic_id">
+                                                <option value="{{ $location->id }}" id="{{ $location->id }}"
+                                                    name="clinic_id">
                                                     {{ $location->name }} </option>
                                             @endforeach
                                         </select>
@@ -101,18 +142,16 @@
                                 <div class="col-md-6">
                                     <div class="input-group">
                                         <div class="icon"><i class="fal fa-file-alt"></i></div>
-                                        <input type="file" class="form-control" name="file" id="file" accept="application/pdf"
-                                            placeholder="Resume" required>
+                                        <input type="file" class="form-control" name="file" id="file"
+                                            accept="application/pdf" placeholder="Resume" required>
                                     </div>
                                 </div>
-
                                 <div class="col-md-12 form-group">
                                     <div class="g-recaptcha" data-callback="validateCaptcha"
                                         data-sitekey="6LcIO8oiAAAAADaqoFOkE6XNb0niDUduHkebp6sK"></div>
                                 </div>
-
                                 <div class="col-md-12 text-center">
-                                    <button type="submit" class="send-msg-btn"> SUBMIT
+                                    <button type="submit" class="send-msg-btn"  id="app-btn"> SUBMIT
                                         <div class="icon"> <i class="far fa-arrow-right"></i> </div>
                                     </button>
                                 </div>
@@ -125,3 +164,5 @@
         </div>
     </div>
 @endsection
+
+

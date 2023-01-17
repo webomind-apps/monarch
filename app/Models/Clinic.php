@@ -54,4 +54,13 @@ class Clinic extends Model
     public function queries(){
         return $this->hasMany(Query::class,'clinic_id');
     }
+    //for career
+    public function career(){
+        return $this->hasMany(Career::class,'clinic_id');
+    }
+    //for registration
+    public function registration(){
+        return $this->hasMany(RegistartionForm::class,'clinic_id');
+    }
+   
 }

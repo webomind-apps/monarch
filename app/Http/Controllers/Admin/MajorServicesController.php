@@ -41,6 +41,16 @@ class MajorServicesController extends Controller
     public function store(Request $request)
     {
 
+        $this->validate($request, [
+            'title' => 'required',
+            'slug' => 'required',
+            'banner' => 'required',
+            'icon' => 'required',
+            'meta_title' => 'required',
+            'meta_description' => 'required',
+            'meta_keywords' => 'required'
+            
+        ]);
         // $image = $request->file('images')->store('services/images', 'public');
         $banner = $request->file('banner')->store('services/banners', 'public');
         $icon = $request->file('icon')->store('services/icon', 'public');
@@ -48,8 +58,12 @@ class MajorServicesController extends Controller
         $majorservice = new MajorService();
         $majorservice->title = $request->title;
         $majorservice->slug = $request->slug;
+        $majorservice->meta_title = $request->meta_title;
+        $majorservice->meta_description = $request->meta_description;
+        $majorservice->meta_keywords = $request->meta_keywords;
         $majorservice->banner = $banner;
         $majorservice->icon = $icon;
+       
         $majorservice->save();
 
         if (!is_null($request->service_id)) {
@@ -100,6 +114,9 @@ class MajorServicesController extends Controller
         $majorservice = MajorService::find($id);
         $majorservice->title = $request->title;
         $majorservice->slug  = $request->slug;
+        $majorservice->meta_title = $request->meta_title;
+        $majorservice->meta_description = $request->meta_description;
+        $majorservice->meta_keywords = $request->meta_keywords;
         if ($request->hasFile('icon')) {
             $icon = $request->file('icon')->store('services/icon', 'public');
             $majorservice->icon = $icon;
@@ -108,6 +125,11 @@ class MajorServicesController extends Controller
             $banner = $request->file('banner')->store('services/banners', 'public');
             $majorservice->banner = $banner;
         }
+        // if ($request->in_footer) {
+        //     $majorservice->in_footer = $request->in_footer;
+        // } else {
+        //     $majorservice->in_footer = 0;
+        // }
        
         $majorservice->save();
 

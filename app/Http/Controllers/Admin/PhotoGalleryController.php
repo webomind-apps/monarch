@@ -18,7 +18,7 @@ class PhotoGalleryController extends Controller
     {
         $images = PhotoGalleryImages::all();
         $details = PhotoGallery::first();
-        return view('admin.photo-gallery.index', compact('details','images'));
+        return view('admin.photo-gallery.index', compact('details', 'images'));
     }
 
     /**
@@ -39,14 +39,29 @@ class PhotoGalleryController extends Controller
      */
     public function store(Request $request)
     {
-    
+
+        $this->validate(
+            $request,
+            [
+                'title' => 'required',
+                'banner' => 'required',
+                'images' => 'required',
+                'meta_title' => 'required',
+                'meta_description' => 'required',
+                'meta_keywords' => 'required',
+            ]
+        );
+
         $photogalleryBanner = $request->file('banner')->store('photo-gallery/Banner', 'public');
 
         $photogallery = new PhotoGallery();
         $photogallery->title = $request->title;
+        $photogallery->meta_title = $request->meta_title;
+        $photogallery->meta_description = $request->meta_description;
+        $photogallery->meta_keywords = $request->meta_keywords;
         $photogallery->banner = $photogalleryBanner;
         $photogallery->save();
-       
+
         foreach ($request->file('images') as $image) {
             $gallery_image = $image->store('photo-gallery/images', 'public');
             $photogalleryimages = new PhotoGalleryImages();
@@ -89,8 +104,24 @@ class PhotoGalleryController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $this->validate(
+            $request,
+            [
+                'title' => 'required',
+                // 'banner' => 'required',
+                // 'images' => 'required',
+                'meta_title' => 'required',
+                'meta_description' => 'required',
+                'meta_keywords' => 'required',
+            ]
+        );
+        
         $photogallery = PhotoGallery::find($id);
         $photogallery->title = $request->title;
+        $photogallery->meta_title = $request->meta_title;
+        $photogallery->meta_description = $request->meta_description;
+        $photogallery->meta_keywords = $request->meta_keywords;
         if ($request->hasFile('banner')) {
             $banner_img = $request->file('banner')->store('photo-gallery/Banner', 'public');
             $photogallery->banner = $banner_img;
@@ -125,7 +156,7 @@ class PhotoGalleryController extends Controller
         return redirect()->route('admin.photo-gallery.index');
     }
 
-       
+
     public function destroyPhotoImage($id)
     {
         $images = PhotoGalleryImages::find($id);

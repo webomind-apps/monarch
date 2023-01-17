@@ -7,6 +7,20 @@
         </a>
     </div>
 
+    <div class="row text-right">
+        <div class="col-md-8"></div>
+        <div class="col-md-4">
+            <select name="blog_category" id="blog_category" class="form-control">
+                <option value="" name="blog_category">Select Category</option>
+                @foreach ($blog_categories as $blog_category)
+                    <option value="{{ $blog_category->id }}" id="{{ $blog_category->id }}"
+                        {{ request('blog_category') == $blog_category->id ? 'selected' : '' }}>
+                        {{ $blog_category->blog_category }} </option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+
     <div class="table-detail">
         <table class="table table-hover">
             <thead>
@@ -42,23 +56,20 @@
                         </td>
                     </tr>
                 @endforeach
-               
+
                 @if (session()->has('message'))
                     <div class="alert alert-success">
                         {{ session()->get('message') }}
                     </div>
                 @endif
             </tbody>
-         
+
         </table>
         {{ $blogs->links('pagination::bootstrap-4') }}
     </div>
-
- 
 @endsection
 
 @push('scripts')
-    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
     <script>
         $('.deleteRecord').on('click', function() {
             var id = $(this).data('id');
@@ -71,5 +82,22 @@
                 $(".alert").slideUp(400);
             });
         })
+
+        $('#blog_category').on('change', function() {
+            var val = $(this).val();
+            var route = "{{ url()->current() }}";
+            var newRoute = updateQueryStringParameter(window.location.href, 'blogs', val);
+            window.location.href = newRoute;
+        })
+
+        function updateQueryStringParameter(uri, key, value) {
+            var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
+            var separator = uri.indexOf('?') !== -1 ? "&" : "?";
+            if (uri.match(re)) {
+                return uri.replace(re, '$1' + key + "=" + value + '$2');
+            } else {
+                return uri + separator + key + "=" + value;
+            }
+        }
     </script>
 @endpush

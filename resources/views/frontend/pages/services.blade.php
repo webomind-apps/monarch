@@ -1,5 +1,18 @@
 @extends('frontend.layout.master')
 
+{{-- @section('title')
+    {{ $seo_contents->services_title }}
+@endsection --}}
+@section('title')
+    <title>{{ $seo_contents->services_meta_title }}</title>
+@endsection
+@section('meta_description')
+    <meta name="meta_description" content="{{ $seo_contents->services_meta_description }}">
+@endsection
+@section('meta_keywords')
+    <meta name="meta_keywords" content="{{ $seo_contents->services_meta_keywords }}">
+@endsection
+
 @section('page-contents')
     <style>
         /* h1.anim-about {
@@ -69,8 +82,8 @@
             <div class="row">
                 @foreach($services as $key => $service)
                 {{-- <div class="col-lg-3 col-md-12 @if($key%2 == 1) mt-5 @else   @endif"> --}}
-                <div class="col-lg-3 col-md-12 {{ $key%2 == 1 ? 'mt-5' : '' }}">
-                
+                <div class="col-lg-3 col-md-12">
+               
                     <div class="paketler wow bounceIn thumb-pad1" data-wow-delay="0.5s"
                         onclick="location.href='{{ route('services_details', $service->slug) }}';"
                         style="cursor: pointer; visibility: visible; animation-delay: 0.5s; animation-name: bounceIn;">

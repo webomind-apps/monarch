@@ -1,5 +1,18 @@
 @extends('frontend.layout.master')
 
+{{-- @section('title')
+    {{ $covid_updates->home_title }}
+@endsection --}}
+@section('title')
+    <title>{{ $covid_updates->home_meta_title }}</title>
+@endsection
+@section('meta_description')
+    <meta name="meta_description" content="{{ $covid_updates->home_meta_description }}">
+@endsection
+@section('meta_keywords')
+    <meta name="meta_keywords" content="{{ $covid_updates->home_meta_keywords }}">
+@endsection
+
 @section('page-contents')
     <!-- Header -->
     @if (session()->has('message'))
@@ -53,7 +66,7 @@
     <section class="featured-services-area">
         <div class="container">
             <div class="row">
-                <div class="partner-slides owl-home-plan owl-carousel owl-theme">
+                <div class="partners-slides owl-home-plan owl-carousel owl-theme">
                     @foreach ($advantages as $advantage)
                         <div class="col-lg-12 col-md-12 col-sm-12">
                             <div class="featured-services-box">
@@ -103,7 +116,7 @@
             <h2 class="text-center text-white mb-4"
                 style="font-size: 40px; font-weight: 400;font-family: Anton, sans-serif;">Promotion Plans</h2>
             <div class="row">
-                <div class="partner-slides owl-home-plan owl-carousel owl-theme">
+                <div class="partners-slides owl-home-plan owl-carousel owl-theme">
                     @foreach ($plans as $plan)
                         <div class="col-lg-12 col-md-12 col-sm-12">
                             <div class="paketler wow bounceIn" data-wow-delay="0.5s"
@@ -175,12 +188,12 @@
             <div class="row">
                 <div class="col-lg-1"></div>
                 <div class="col-lg-10 col-md-12 col-sm-12 m-auto">
-                    <div class="partner-slides owl-partner owl-carousel owl-theme">
+                    <div class="partners-slides owl-partner owl-carousel owl-theme">
                         @foreach ($partners as $partner)
                             <div class="single-partner-item">
-                                <a href="#">
+                                {{-- <a href="#"> --}}
                                     <img src={{ asset("storage/$partner->image") }} alt="image" style="width:95%">
-                                </a>
+                                {{-- </a> --}}
                             </div>
                         @endforeach
                     </div>
@@ -226,8 +239,8 @@
                         <div class="col-lg-6 col-md-6">
                             <div class="form-group">
                                 <label><i class="fas fa-phone-volume"></i></label>
-                                <input type="text" class="form-control" name="phone_number" placeholder="YOUR PHONE"
-                                    required>
+                                <input type="tel" class="form-control" name="phone_number" id="phone_number" placeholder="YOUR PHONE"
+                                    required >
                             </div>
                         </div>
 
@@ -256,7 +269,7 @@
                         </div>
 
                         <div class="col-lg-12 col-md-12">
-                            <button type="submit" class="btn btn-primary">Book Your Appointment <i
+                            <button type="submit" class="btn btn-primary" id="app-btn">Book Your Appointment <i
                                     class="fa fa-arrow-right"></i></button>
                         </div>
                     </div>

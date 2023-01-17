@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Mail\BookAnAppointmentMail;
+use App\Mail\ThankYouMail;
+use App\Models\Clinic;
 use App\Models\Enquiry;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class Appointment extends Controller
 {
@@ -36,6 +40,7 @@ class Appointment extends Controller
      */
     public function store(Request $request)
     {
+
         $enquiry = new Enquiry();
         $enquiry->full_name = $request->full_name;
         $enquiry->patient_type = $request->patient_type;
@@ -46,6 +51,29 @@ class Appointment extends Controller
         $enquiry->preferred_time = $request->time;
         $enquiry->preferred_date = $request->date;
         $enquiry->save();
+
+        $admin_mails = Clinic::where('id', $request->clinic_id)->first();
+
+        $admin = explode(',', $admin_mails->admin_email);
+
+        $country_codes = [
+            '403', '587', '780', '825', '236', '778', '604',
+            '250', '204', '431', '506', '709', '867', '902', '782',
+            '437', '519', '647', '905', '249', '343', '416', '548', '705',
+            '365', '613', '807', '226', '289', '902', '782', '514', '581',
+            '819', '438', '450', '418', '579', '873', '367', '639', '306', '867'
+        ];
+
+        $phone = $request->phone_number;
+        $phone1 = substr($phone, 0, 3);
+
+        if (in_array($phone1, $country_codes)) {
+            Mail::to($admin)->send(new BookAnAppointmentMail($enquiry));
+        } else {
+            Mail::to('info@tastechnologies.com')->send(new BookAnAppointmentMail($enquiry));
+        }
+
+        Mail::to($enquiry->email)->send(new ThankYouMail($enquiry));
 
         return redirect()->back()->with('message', 'APPOINTMENT BOOKED SUCCESSFULLY. THANK YOU!');
     }

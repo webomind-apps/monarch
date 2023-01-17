@@ -37,6 +37,13 @@ class SliderController extends Controller
      */
     public function store(Request $request)
     {
+
+        $this->validate($request, [
+            'title' => 'required',
+            'position' => 'required',
+            'slider' => 'required',
+        ]);
+
         $slider_image = $request->file('slider')->store('home/slider', 'public'); 
 
         $slider = new Slider();

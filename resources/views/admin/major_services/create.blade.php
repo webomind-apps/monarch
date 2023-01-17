@@ -14,15 +14,16 @@
                     <div class="form-group">
                         <div class="form-group">
                             <label for="Title">Title<span style="color: red">*</span></label>
-                            <input type="text" class="form-control slug" id="title" name="title" placeholder="Title">
+                            <input type="text" class="form-control slug" id="title" name="title"
+                                placeholder="Title" value="{{ old('title') }}">
                             @error('title')
                                 <span class="error">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group">
                             <label for="Slug">Slug<span style="color: red">*</span></label>
-                            <input type="text" class="form-control" id="slug" name="slug"
-                                placeholder="Slug" value="{{ old('slug') }}" readonly>
+                            <input type="text" class="form-control" id="slug" name="slug" placeholder="Slug"
+                                value="{{ old('slug') }}" readonly>
                         </div>
                         <div class="form-group">
                             <label for="Icon">Icon<span style="color: red">*</span></label>
@@ -30,7 +31,7 @@
                             @error('icon')
                                 <span class="error">{{ $message }}</span>
                             @enderror
-                        </div>  
+                        </div>
                         <div class="form-group">
                             <label for="Banner">Banner<span style="color: red">*</span></label>
                             <input type="file" class="form-control" id="banner" name="banner" placeholder="Banner">
@@ -46,9 +47,40 @@
                                 <label for="{{ $service->name }}">{{ $service->name }}</label><br>
                             @endforeach
                         </div>
-                        @error('service_id')
-                            <span class="error">{{ $message }}</span>
-                        @enderror
+                        
+                     
+                        <div class="form-group">
+                            <label for="Meta Description">Meta Title<span style="color: red">*</span></label>
+                            <textarea class="form-control" rows="8" id="meta_title" name="meta_title"
+                                placeholder="Meta Title">{{ old('meta_title') }}</textarea>
+                            @error('meta_title')
+                                <span class="error">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="Meta Description">Meta Description<span style="color: red">*</span></label>
+                            <textarea class="form-control" rows="8" id="meta_description" name="meta_description"
+                                placeholder="Meta Description">{{ old('meta_desription') }}</textarea>
+                            @error('meta_description')
+                                <span class="error">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label for="Meta Keywords">Meta Keywords<span style="color: red">*</span></label>
+                                <textarea class="form-control" rows="8" id="meta_keywords" name="meta_keywords" placeholder="Meta Keywords">{{ old('meta_keywords') }}</textarea>
+                                @error('meta_keywords')
+                                    <span class="error">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="For home page">For home page &nbsp;</label>
+                            <input type="checkbox" id="in_homepage" name="in_homepage" value="1">
+                            @error('in_homepage')
+                                <span class="error">{{ $message }}</span>
+                            @enderror
+                        </div>
                     </div>
 
                     <button type="submit" class="btn btn-danger btn-sm">Submit</button>

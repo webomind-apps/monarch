@@ -1,5 +1,18 @@
 @extends('frontend.layout.master')
 
+{{-- @section('title')
+    {{ $service_details->title }}
+@endsection --}}
+@section('title')
+    <title>{{ $service_details->meta_title }}</title>
+@endsection
+@section('meta_description')
+    <meta name="meta_description" content="{{ $service_details->meta_description }}">
+@endsection
+@section('meta_keywords')
+    <meta name="meta_keywords" content="{{ $service_details->meta_keywords }}">
+@endsection
+
 @section('page-contents')
     <section class="home-banner home-slider-two">
         <div id="Bannerslider" class="carousel slide" data-ride="carousel">
@@ -27,13 +40,19 @@
     <section class="services-area ptb-100">
         <div class="container">
             <div class="section-title text-start">
-                <span class="sub-title">Our Services</span>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <p class="sub-title">Our Services</p>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12"> <a href="{{ route('services') }}"
+                            class="btn btn-primary">Back<i class="fa fa-arrow-left"></i></a> </div>
+                </div>
+
                 {{-- <h2>What We Offer for You to Our Patients to solve Cure</h2> --}}
 
                 {{-- <a href={{ route('services') }} class="btn btn-primary">Back <i class="fa fa-arrow-left"></i></a> --}}
 
-                <a href={{ route('services') }} class="btn btn-primary">Back <i
-                    class="fa fa-arrow-left"></i></a>
+
             </div>
 
             {{-- {{dd($service_details->services())}} --}}

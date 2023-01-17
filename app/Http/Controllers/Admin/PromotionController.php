@@ -41,10 +41,24 @@ class PromotionController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate(
+            $request,
+            [
+                'banner' => 'required',
+                'title' => 'required',
+                'meta_title' => 'required',
+                'meta_keywords' => 'required',
+                'meta_description' => 'required',
+            ]
+        );
+
         $banner = $request->file('banner')->store('promotions/banner', 'public');
         $promotions = new Promotion();
         $promotions->banner = $banner;
         $promotions->title = $request->title;
+        $promotions->meta_title = $request->meta_title;
+        $promotions->meta_description = $request->meta_description;
+        $promotions->meta_keywords = $request->meta_keywords;
         $promotions->save();
 
         if (!is_null($request->plan_id)) {
@@ -92,12 +106,27 @@ class PromotionController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $this->validate(
+            $request,
+            [
+                // 'banner' => 'required',
+                'title' => 'required',
+                'meta_title' => 'required',
+                'meta_keywords' => 'required',
+                'meta_description' => 'required',
+            ]
+        );
+
         $promotions = Promotion::find($id);
         if ($request->hasFile('banner')) {
             $banner_image = $request->file('banner')->store('promotions/banner', 'public');
             $promotions->banner = $banner_image;
         }
         $promotions->title = $request->title;
+        $promotions->meta_title = $request->meta_title;
+        $promotions->meta_description = $request->meta_description;
+        $promotions->meta_keywords = $request->meta_keywords;
         $promotions->save();
 
         $promotions->promotions()->delete();

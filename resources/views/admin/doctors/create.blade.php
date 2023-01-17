@@ -13,14 +13,14 @@
                 @csrf
                 <div class="form-group">
                     <label for="Name">Name<span style="color: red">*</span></label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{old('name')}}">
                     @error('name')
                         <span class="error">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="form-group">
                     <label for="Title">Title<span style="color: red">*</span></label>
-                    <input type="text" class="form-control" id="title" name="title" placeholder="Title">
+                    <input type="text" class="form-control" id="title" name="title" placeholder="Title" value="{{old('title')}}">
                     @error('title')
                         <span class="error">{{ $message }}</span>
                     @enderror
@@ -34,7 +34,7 @@
                 </div>
                 <div class="form-group">
                     <label for="Description">Description<span style="color: red">*</span></label>
-                    <input type="text" class="form-control" id="description" name="description" placeholder="Description">
+                    <input type="text" class="form-control" id="description" name="description" placeholder="Description" value="{{old('description')}}">
                     @error('description')
                         <span class="error">{{ $message }}</span>
                     @enderror

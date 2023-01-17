@@ -37,7 +37,12 @@ class PartnerController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $this->validate($request, [
+            'title' => 'required',
+            'image' => 'required',
+            'position' => 'required',
+        ]);
+
         $logo = $request->file('image')->store('home/partners', 'public');
         $partner = new Partner();
         $partner->title = $request->title;

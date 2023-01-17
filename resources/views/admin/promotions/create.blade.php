@@ -34,9 +34,7 @@
                                 <label for="{{ $plan->name }}">{{ $plan->name }}</label><br>
                             @endforeach
                         </div>
-                        @error('service_id')
-                            <span class="error">{{ $message }}</span>
-                        @enderror
+                       
                     </div>
 
                     <button type="submit" class="btn btn-danger btn-sm">Submit</button>

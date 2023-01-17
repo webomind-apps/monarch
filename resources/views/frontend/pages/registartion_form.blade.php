@@ -139,112 +139,122 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="row">
-                                            <div class="col-lg-8"></div>
-                                            <div class="col-lg-1 ml-auto">Yes</div>
-                                            <div class="col-lg-1 ml-auto">No</div>
+                                            <div class="col-lg-8 col-md-8 col-sm-8 col-8"></div>
+                                            <div class="col-lg-1 col-md-2 col-sm-1 col-2"><label>Yes</label></div>
+                                            <div class="col-lg-1 col-md-2 col-sm-1 col-2"><label>No</label></div>
                                         </div>
 
                                         <div class="row mt-3">
-                                            <div class="col-lg-8">
+                                            <div class="col-lg-8 col-md-8 col-sm-8 col-8">
                                                 <label for="">Fever</label>
                                             </div>
-                                            <div class="col-lg-1 ml-auto">
-                                                <input type="radio" name="fever" id="fever" value="1" required>
+                                            <div class="col-lg-1 col-md-8 col-sm-8 col-2 ml-auto">
+                                                <input type="radio" name="fever" id="fever" value="1"
+                                                    required>
                                             </div>
-                                            <div class="col-lg-1 ml-auto">
-                                                <input type="radio" name="fever" id="fever" value="0" required>
+                                            <div class="col-lg-1 col-md-8 col-sm-8 col-2 ml-auto">
+                                                <input type="radio" name="fever" id="fever" value="0"
+                                                    required>
                                             </div>
 
-                                            <div class="col-lg-8">
+                                            <div class="col-lg-8 col-md-8 col-sm-8 col-8">
                                                 <label for="">New onset of cough</label>
                                             </div>
-                                            <div class="col-lg-1 ml-auto">
-                                                <input type="radio" name="cough" id="cough" value="1" required>
+                                            <div class="col-lg-1 col-md-8 col-sm-8 col-2 ml-auto">
+                                                <input type="radio" name="cough" id="cough" value="1"
+                                                    required>
                                             </div>
-                                            <div class="col-lg-1 ml-auto">
-                                                <input type="radio" name="cough" id="cough" value="0" required>
+                                            <div class="col-lg-1 col-md-8 col-sm-8 col-2 ml-auto">
+                                                <input type="radio" name="cough" id="cough" value="0"
+                                                    required>
                                             </div>
 
-                                            <div class="col-lg-8">
+                                            <div class="col-lg-8 col-md-8 col-sm-8 col-8">
                                                 <label for="">Shortness of breath or difficulty breathing</label>
                                             </div>
-                                            <div class="col-lg-1 ml-auto">
-                                                <input type="radio" name="shortness_of_breath"
-                                                    id="shortness_of_breath" value="1" required>
-                                            </div>
-                                            <div class="col-lg-1 ml-auto">
-                                                <input type="radio" name="shortness_of_breath"
-                                                    id="shortness_of_breath" value="0" required>
-                                            </div>
-
-
-                                            <div class="col-lg-8">
-                                                <label for="">Sore throat or difficulty swallowing</label>
-                                            </div>
-                                            <div class="col-lg-1 ml-auto">
-                                                <input type="radio" name="sore_throat" id="sore_throat"
+                                            <div class="col-lg-1 col-md-8 col-sm-8 col-2 ml-auto">
+                                                <input type="radio" name="shortness_of_breath" id="shortness_of_breath"
                                                     value="1" required>
                                             </div>
-                                            <div class="col-lg-1 ml-auto">
-                                                <input type="radio" name="sore_throat" id="sore_throat"
+                                            <div class="col-lg-1 col-md-8 col-sm-8 col-2 ml-auto">
+                                                <input type="radio" name="shortness_of_breath" id="shortness_of_breath"
                                                     value="0" required>
                                             </div>
 
 
-                                            <div class="col-lg-8">
+                                            <div class="col-lg-8 col-md-8 col-sm-8 col-8">
+                                                <label for="">Sore throat or difficulty swallowing</label>
+                                            </div>
+                                            <div class="col-lg-1 col-md-8 col-sm-8 col-2 ml-auto">
+                                                <input type="radio" name="sore_throat" id="sore_throat" value="1"
+                                                    required>
+                                            </div>
+                                            <div class="col-lg-1 col-md-8 col-sm-8 col-2 ml-auto">
+                                                <input type="radio" name="sore_throat" id="sore_throat" value="0"
+                                                    required>
+                                            </div>
+
+
+                                            <div class="col-lg-8 col-md-8 col-sm-8 col-8">
                                                 <label for="">Decrease or loss of smell or taste</label>
                                             </div>
-                                            <div class="col-lg-1 ml-auto">
-                                                <input type="radio" name="loss_of_smell_taste"
-                                                    id="loss_of_smell_taste" value="1" required>
+                                            <div class="col-lg-1 col-md-8 col-sm-8 col-2 ml-auto">
+                                                <input type="radio" name="loss_of_smell_taste" id="loss_of_smell_taste"
+                                                    value="1" required>
                                             </div>
-                                            <div class="col-lg-1 ml-auto">
-                                                <input type="radio" name="loss_of_smell_taste"
-                                                    id="loss_of_smell_taste" value="0" required>
+                                            <div class="col-lg-1 col-md-8 col-sm-8 col-2 ml-auto">
+                                                <input type="radio" name="loss_of_smell_taste" id="loss_of_smell_taste"
+                                                    value="0" required>
                                             </div>
 
-                                            <div class="col-lg-8">
+                                            <div class="col-lg-8 col-md-8 col-sm-8 col-8">
                                                 <label for="">Chills, headache, pink eye</label>
                                             </div>
-                                            <div class="col-lg-1 ml-auto">
-                                                <input type="radio" name="pink_eye" id="pink_eye" value="1" required>
+                                            <div class="col-lg-1 col-md-8 col-sm-8 col-2 ml-auto">
+                                                <input type="radio" name="pink_eye" id="pink_eye" value="1"
+                                                    required>
                                             </div>
-                                            <div class="col-lg-1 ml-auto">
-                                                <input type="radio" name="pink_eye" id="pink_eye" value="0" required>
+                                            <div class="col-lg-1 col-md-8 col-sm-8 col-2 ml-auto">
+                                                <input type="radio" name="pink_eye" id="pink_eye" value="0"
+                                                    required>
                                             </div>
 
 
-                                            <div class="col-lg-8">
+                                            <div class="col-lg-8 col-md-8 col-sm-8 col-8">
                                                 <label for="">Unexplained fatigue, malaise, muscle aches</label>
                                             </div>
-                                            <div class="col-lg-1 ml-auto">
-                                                <input type="radio" name="fatigue" id="fatigue" value="1" required>
+                                            <div class="col-lg-1 col-md-8 col-sm-8 col-2 ml-auto">
+                                                <input type="radio" name="fatigue" id="fatigue" value="1"
+                                                    required>
                                             </div>
-                                            <div class="col-lg-1 ml-auto">
-                                                <input type="radio" name="fatigue" id="fatigue" value="0" required>
+                                            <div class="col-lg-1 col-md-8 col-sm-8 col-2 ml-auto">
+                                                <input type="radio" name="fatigue" id="fatigue" value="0"
+                                                    required>
                                             </div>
 
 
-                                            <div class="col-lg-8">
+                                            <div class="col-lg-8 col-md-8 col-sm-8 col-8">
                                                 <label for="">Nausea, vomiting, diarrhea, abdominal pain</label>
                                             </div>
-                                            <div class="col-lg-1 ml-auto">
-                                                <input type="radio" name="nausea" id="nausea" value="1" required>
+                                            <div class="col-lg-1 col-md-8 col-sm-8 col-2 ml-auto">
+                                                <input type="radio" name="nausea" id="nausea" value="1"
+                                                    required>
                                             </div>
-                                            <div class="col-lg-1 ml-auto">
-                                                <input type="radio" name="nausea" id="nausea" value="0" required>
+                                            <div class="col-lg-1 col-md-8 col-sm-8 col-2 ml-auto">
+                                                <input type="radio" name="nausea" id="nausea" value="0"
+                                                    required>
                                             </div>
 
 
-                                            <div class="col-lg-8">
+                                            <div class="col-lg-8 col-md-8 col-sm-8 col-8">
                                                 <label for="">Runny nose, nasal congestion without a known case
                                                 </label>
                                             </div>
-                                            <div class="col-lg-1 ml-auto">
+                                            <div class="col-lg-1 col-md-8 col-sm-8 col-2 ml-auto">
                                                 <input type="radio" name="nasal_congestion" id="nasal_congestion"
                                                     value="1" required>
                                             </div>
-                                            <div class="col-lg-1 ml-auto">
+                                            <div class="col-lg-1 col-md-8 col-sm-8 col-2 ml-auto">
                                                 <input type="radio" name="nasal_congestion" id="nasal_congestion"
                                                     value="0" required>
                                             </div>
@@ -273,7 +283,7 @@
                             </div>
                             <div class="col-lg-4 mt-4">
                                 <label for="">Date:*</label>
-                                <input type="date" name="date" id="date" required  min="<?= date('Y-m-d') ?>">
+                                <input type="date" name="date" id="date" required min="<?= date('Y-m-d') ?>">
                             </div>
 
                             <div class="col-lg-4 mt-4">
@@ -290,17 +300,21 @@
                                 </div>
                             </div>
 
-
                             <div class="col-lg-12 mt-5">
                                 <label for="">Signature of Patient or Guardian: *</label>
                             </div>
                             <div class="col-lg-12">
-                                <p class="modal-form" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <p class="modal-form" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                     <i class="fa fa-signature"></i> Sign
                                 </p>
 
                             </div>
 
+                            {{-- <div id="results"><b>Preview:</b></div> --}}
+
+                            <input type="text" id="signature" hidden name="signature" class="signature">
+
+                          
                             <div class="col-lg-12 mt-5 text-center">
                                 <button type="submit" class="submit-btn"> Submit </button>
                             </div>
@@ -309,8 +323,39 @@
                     </form>
 
 
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Signature</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                {{-- <div class="modal-body"> --}}
+                                <div class="wrapper-signature">
+
+                                    <canvas id="signature-pad" class="signature-pad" width=600 height=200></canvas>
+                                </div>
+
+                                <div>
+
+                                </div>
+                                {{-- </div> --}}
+                                <div class="modal-footer">
+                                    <button type="button" class="btn-sm btn-secondary" id="save">Save</button>
+                                    <button type="button" class="btn-sm btn-secondary" id="clear">Clear</button>
+                                    <button type="button" class="btn-sm btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
+
     </section>
 @endsection

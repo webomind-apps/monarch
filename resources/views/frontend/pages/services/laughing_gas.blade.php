@@ -102,24 +102,4 @@
     <!-- End FunFacts Area -->
 
 
-    <!-- Start CTA Area -->
-    <section class="cta-area ptb-100">
-        <div class="container">
-            <div class="cta-content">
-                <div class="icon">
-                    <img src={{ asset('monarch-frontend/image/contact/ambulance.png') }} alt="ambulance">
-                </div>
-                <h2>Emergency Medical Care 24/7</h2>
-                <p>With access to 24 hour emergency assistance, It’s so important you can continue to help others.</p>
-               {{-- <input type="text" id="addressInput_5" size="20" value="" mid="5"
-                    class="addressInput pac-target-input" placeholder="Enter Zip Code or City" autocomplete="off"> <span
-                    class="text-white">or</span>  --}}
-                    <span class="currentLocationfooter">
-                        <a href="{{ route('find_location') }}"><input class="button maplocatemebtn" id="currentLocationfooter"
-                                mid="4" type="submit" value="Locate Me"></a>
-                    </span>
-            </div>
-        </div>
-    </section>
-    <!-- End CTA Area -->
 @endsection

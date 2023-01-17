@@ -38,7 +38,21 @@ class WhoWeAreController extends Controller
     public function store(Request $request)
     {
 
-        // dd($request->all());
+    
+
+        $this->validate(
+            $request,
+            [
+                'banner' => 'required',
+                'image' => 'required',
+                'title' => 'required',
+                'description' => 'required',
+                'meta_title' => 'required',
+                'meta_keywords' => 'required',
+                'meta_description' => 'required',
+            ]
+        );
+        
         $banner = $request->file('banner')->store('who-we-are/banners', 'public');
         $image = $request->file('image')->store('who-we-are/image', 'public');
 
@@ -47,6 +61,9 @@ class WhoWeAreController extends Controller
         $details->banner_header = $request->title;
         $details->banner = $banner;
         $details->description = $request->description;
+        $details->meta_title = $request->meta_title;
+        $details->meta_description = $request->meta_description;
+        $details->meta_keywords = $request->meta_keywords;
         $details->image = $image;
         $details->save();
 
@@ -85,6 +102,20 @@ class WhoWeAreController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $this->validate(
+            $request,
+            [
+                // 'banner' => 'required',
+                // 'image' => 'required',
+                'title' => 'required',
+                'description' => 'required',
+                'meta_title' => 'required',
+                'meta_keywords' => 'required',
+                'meta_description' => 'required',
+            ]
+        );
+
         $details = WhoWeAre::find($id);
         
         if ($request->hasFile('image')) {
@@ -97,6 +128,9 @@ class WhoWeAreController extends Controller
         }
         $details->banner_header = $request->title;
         $details->description = $request->description;
+        $details->meta_title = $request->meta_title;
+        $details->meta_description = $request->meta_description;
+        $details->meta_keywords = $request->meta_keywords;
         $details->save();
 
         return redirect()->route('admin.who-we-are.index')->with('message', 'Details updated successfully!');

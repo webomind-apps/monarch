@@ -65,10 +65,28 @@
                             <label for="Title">Long Description</label>
                             <textarea class="form-control" id="long_description" name="long_description" placeholder="Description">{{ $services->long_description }}</textarea>
                         </div>
+                        <label for="SEO">SEO content<span style="color: red">*</span></label>
+                        <div class="form-group">
+                            <label for="Meta title">Meta title<span style="color: red">*</span></label>
+                            <input type="text" class="form-control" id="meta_title" name="meta_title"
+                                value="{{ $services->meta_title }}" placeholder="Meta title">
+                        </div>
+                        <div class="form-group">
+                            <label for="Meta Description">Meta Description<span style="color: red">*</span></label>
+                            <textarea class="form-control" rows="8" id="meta_description" name="meta_description"
+                                placeholder="Meta Description">{{ $services->meta_description}}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label for="Meta Keywords">Meta Keywords<span style="color: red">*</span></label>
+                                <textarea class="form-control" rows="8" id="meta_keywords" name="meta_keywords" placeholder="Meta Keywords">{{$services->meta_keywords}}</textarea>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label for="For home page">For home page &nbsp;</label>
                             <input type="checkbox" id="in_homepage" name="in_homepage" value="1"  @if ($services->in_homepage) checked @endif>
                         </div>
+                        
                     </div>
                     <button type="submit" class="btn btn-danger btn-sm">Submit</button>
             </div>

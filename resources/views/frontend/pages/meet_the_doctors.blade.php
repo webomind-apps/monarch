@@ -1,5 +1,19 @@
 @extends('frontend.layout.master')
 
+{{-- @section('title')
+    {{ $seo_contents->doctors_title }}
+@endsection --}}
+@section('title')
+    <title>{{ $seo_contents->doctors_meta_title }}</title>
+@endsection
+@section('meta_description')
+    <meta name="meta_description" content="{{ $seo_contents->doctors_meta_description }}">
+@endsection
+@section('meta_keywords')
+    <meta name="meta_keywords" content="{{ $seo_contents->doctors_meta_keywords }}">
+@endsection
+
+
 @section('page-contents')
     <style>
         /* h1.anim-about {
@@ -16,6 +30,8 @@
             padding: 40px 40px 62px 40px;
         }
     </style>
+    
+
     <section class="home-banner home-slider-two">
         <div id="Bannerslider" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
@@ -24,9 +40,9 @@
                     <div class="carousel-caption">
                         <div class="container">
                             <div class="row">
-                                <div class="col-lg-6 col-md-7 col-sm-8 offset-lg-6 offset-md-5 offset-5 col-7">
+                                <div class="col-xl-5 col-lg-7 col-md-7 col-sm-8">
                                     <div class="square-shape">
-                                        <h1 class="anim-about"><strong>Meet The Dentists</strong>
+                                        <h1 class="anim-about "><strong>Meet The Dentists</strong>
                                         </h1>
                                     </div>
                                 </div>
@@ -34,7 +50,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
             <!-- Left and right controls -->
         </div>

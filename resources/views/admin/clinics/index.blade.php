@@ -1,11 +1,13 @@
 @extends('admin.layout.master')
 
 @section('page-contents')
-    <div>
-        <a class="btn btn-danger btn-sm" href="{{ route('admin.clinics.create') }}">
-            Add
-        </a>
-    </div>
+    @if (Auth::user()->admin_type == 1)
+        <div>
+            <a class="btn btn-danger btn-sm" href="{{ route('admin.clinics.create') }}">
+                Add
+            </a>
+        </div>
+    @endif
 
     <div class="table-detail">
         <table class="table table-hover">

@@ -15,15 +15,16 @@
                     <div class="form-group">
                         <div class="form-group">
                             <label for="Title">Title<span style="color: red">*</span></label>
-                            <input type="text" class="form-control slug" id="title" name="title" placeholder="Title">
+                            <input type="text" class="form-control slug" id="title" name="title"
+                                placeholder="Title" value="{{old('title')}}">
                             @error('title')
                                 <span class="error">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group">
                             <label for="Slug">Slug<span style="color: red">*</span></label>
-                            <input type="text" class="form-control" id="slug" name="slug"
-                                placeholder="Slug" value="{{ old('slug') }}" readonly>
+                            <input type="text" class="form-control" id="slug" name="slug" placeholder="Slug"
+                                value="{{ old('slug') }}" readonly>
                         </div>
                         <div class="form-group">
                             <label for="Icon">Icon<span style="color: red">*</span></label>
@@ -59,17 +60,43 @@
                         </div> --}}
                         <div class="form-group">
                             <label for="Title">Short Description<span style="color: red">*</span></label>
-                            <textarea class="form-control" id="description" name="description" placeholder="Description"></textarea>
+                            <textarea class="form-control" id="description" name="description" placeholder="Description">{{old('description')}}</textarea>
                             @error('description')
                                 <span class="error">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="Title">Long Description</label>
-                            <textarea class="form-control" id="long_description" name="long_description" placeholder="Description"></textarea>
+                            <label for="Title"><span style="color: red">*</span>Long Description</label>
+                            <textarea class="form-control" id="long_description" name="long_description" placeholder="Description">{{old('long_description')}}</textarea>
                             @error('long_description')
                                 <span class="error">{{ $message }}</span>
                             @enderror
+                        </div>
+                        <label for="SEO">SEO content<span style="color: red">*</span></label>
+                        <div class="form-group">
+                            <label for="Meta title">Meta title<span style="color: red">*</span></label>
+                            <input type="text" class="form-control" id="meta_title" name="meta_title"
+                                value="{{ old('meta_title') }}" placeholder="Meta title">
+                            @error('meta_title')
+                                <span class="error">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="Meta Description">Meta Description<span style="color: red">*</span></label>
+                            <textarea class="form-control" rows="8" id="meta_description" name="meta_description"
+                                placeholder="Meta Description">{{old('meta_desription')}}</textarea>
+                            @error('meta_description')
+                                <span class="error">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label for="Meta Keywords">Meta Keywords<span style="color: red">*</span></label>
+                                <textarea class="form-control" rows="8" id="meta_keywords" name="meta_keywords" placeholder="Meta Keywords">{{old('meta_keywords')}}</textarea>
+                                @error('meta_keywords')
+                                    <span class="error">{{ $message }}</span>
+                                @enderror
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="For home page">For home page &nbsp;</label>

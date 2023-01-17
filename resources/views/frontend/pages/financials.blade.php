@@ -1,5 +1,18 @@
 @extends('frontend.layout.master')
 
+{{-- @section('title')
+    {{ $financials->title }}
+@endsection --}}
+@section('title')
+    <title>{{ $financials->meta_title }}</title>
+@endsection
+@section('meta_description')
+    <meta name="meta_description" content="{{ $financials->meta_description }}">
+@endsection
+@section('meta_keywords')
+    <meta name="meta_keywords" content="{{ $financials->meta_keywords }}">
+@endsection
+
 @section('page-contents')
     <style>
         /* h1.anim-about {

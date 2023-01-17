@@ -1,19 +1,21 @@
 @extends('admin.layout.master')
 
 @section('page-contents')
-    <div class="row text-right">
-        <div class="col-md-8"></div>
-        <div class="col-md-4">
-            <select name="location" id="location" class="form-control">
-                <option value="" name="location">Select Location</option>
-                @foreach ($locations as $location)
-                    <option value="{{ $location->id }}" id="{{ $location->id }}"
-                        {{ request('location') == $location->id ? 'selected' : '' }}>
-                        {{ $location->name }} </option>
-                @endforeach
-            </select>
+    @if (Auth::user()->admin_type == 1)
+        <div class="row text-right">
+            <div class="col-md-8"></div>
+            <div class="col-md-4">
+                <select name="location" id="location" class="form-control">
+                    <option value="" name="location">Select Location</option>
+                    @foreach ($locations as $location)
+                        <option value="{{ $location->id }}" id="{{ $location->id }}"
+                            {{ request('location') == $location->id ? 'selected' : '' }}>
+                            {{ $location->name }} </option>
+                    @endforeach
+                </select>
+            </div>
         </div>
-    </div>
+    @endif
     <br>
     <div class="table-detail">
         <table class="table table-hover">
@@ -38,7 +40,7 @@
                         <td>{{ $enquiry->patient_type }}</td>
                         <td>{{ $enquiry->full_name }}</td>
                         <td>{{ $enquiry->phone_number }}</td>
-                        <td>{{$enquiry->clinic->name}}</td>
+                        <td>{{ $enquiry->clinic->name }}</td>
                         {{-- <td>{{ $enquiry->email }}</td> --}}
                         <td>{{ $enquiry->preferred_time }}</td>
                         <td>{{ $enquiry->preferred_date }}</td>
@@ -67,7 +69,7 @@
                 @endif
             </tbody>
         </table>
-        {{ $enquiries->links('pagination::bootstrap-4')}}
+        {{ $enquiries->links('pagination::bootstrap-4') }}
     </div>
 @endsection
 

@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Mail\RegistrationFormMail;
+use App\Models\Clinic;
 use App\Models\RegistartionForm;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class RegistrationFormController extends Controller
 {
@@ -36,6 +39,7 @@ class RegistrationFormController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $registration_form = new RegistartionForm();
         $registration_form->first_name = $request->first_name;
         $registration_form->middle_name = $request->middle_name;
@@ -58,7 +62,30 @@ class RegistrationFormController extends Controller
         $registration_form->fatigue = $request->fatigue;
         $registration_form->nausea = $request->nausea;
         $registration_form->nasal_congestion = $request->nasal_congestion;
+        // $file = $request->file('signature')->store('signature', 'public');
+        $registration_form->signature = $request->signature;
         $registration_form->save();
+
+        $admin_mails = Clinic::where('id', $request->clinic_id)->first();
+
+        $admin = explode(',', $admin_mails->admin_email);
+
+        $country_codes = [
+            '403', '587', '780', '825', '236', '778', '604',
+            '250', '204', '431', '506', '709', '867', '902', '782',
+            '437', '519', '647', '905', '249', '343', '416', '548', '705',
+            '365', '613', '807', '226', '289', '902', '782', '514', '581',
+            '819', '438', '450', '418', '579', '873', '367', '639', '306', '867'
+        ];
+
+        $phone = $request->phone_number;
+        $phone1 = substr($phone, 0, 3);
+       
+        if (in_array($phone1, $country_codes)) {
+            Mail::to($admin)->send(new RegistrationFormMail($registration_form));
+        } else {
+            Mail::to('surabhi@webomindapps.com')->send(new RegistrationFormMail($registration_form));
+        }
 
         return redirect()->back()->with('message', 'FORM SUBMITTED SUCCESSFULLY, THANK YOU!');
     }

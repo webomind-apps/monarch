@@ -1,5 +1,18 @@
 @extends('frontend.layout.master')
 
+{{-- @section('title')
+    {{ $seo_contents->location_title }}
+@endsection --}}
+@section('title')
+    <title>{{ $seo_contents->location_meta_title }}</title>
+@endsection
+@section('meta_description')
+    <meta name="meta_description" content="{{ $seo_contents->location_meta_description }}">
+@endsection
+@section('meta_keywords')
+    <meta name="meta_keywords" content="{{ $seo_contents->location_meta_keywords }}">
+@endsection
+
 @section('page-contents')
     {{-- <link rel="stylesheet" href="./assets/css/find-location.css"> --}}
     <link rel="stylesheet" href={{ asset('monarch-frontend/css/find-location.css') }}>
@@ -118,3 +131,5 @@
 
 @push('scripts')
 @endpush
+
+
